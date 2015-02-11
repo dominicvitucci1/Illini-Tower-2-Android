@@ -1,0 +1,144 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/home_bkgnd"
+    tools:context="com.dominic.illinitower.DiningActivity">
+
+    <include
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/top_bar"
+        android:id="@+id/toolbar_container" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView17"
+        android:src="@drawable/dining_bkgnd"
+        android:scaleType="matrix"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/toolbar_container"
+        android:layout_centerHorizontal="true" />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/toolbar_container"
+        android:fillViewport="true">
+
+        <RelativeLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="48dp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="88dp"
+                android:layout_weight="1"
+                android:id="@+id/dining_todays_menu"
+                android:background="@color/dining_menu_bkgnd"
+                android:onClick="onMenuClicked"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="false"
+                android:layout_above="@+id/dining_skilet_choice">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageView2"
+                        android:src="@drawable/ic_event_white_36dp"
+                        android:layout_gravity="center_horizontal" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="today&apos;s menu"
+                        android:id="@+id/textView3"
+                        android:layout_gravity="center_horizontal"
+                        style="@style/textStyle" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="88dp"
+                android:layout_weight="1"
+                android:id="@+id/dining_skilet_choice"
+                android:onClick="onSkilletChoiceClicked"
+                android:background="@color/dining_skillet"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="false"
+                android:layout_above="@+id/dining_late_plate">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageView4"
+                        android:src="@drawable/ic_local_cafe_white_36dp"
+                        android:layout_gravity="center_horizontal" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="skillet choice nominations"
+                        android:id="@+id/textView4"
+                        style="@style/textStyle" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="88dp"
+                android:layout_weight="1"
+                android:clickable="false"
+                android:id="@+id/dining_late_plate"
+                android:onClick="onLatePlateClicked"
+                android:background="@color/dining_late_plate_bkgnd"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="40dp">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageView5"
+                        android:src="@drawable/ic_access_time_white_36dp"
+                        android:layout_gravity="center_horizontal" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="late plate request"
+                        android:id="@+id/textView5"
+                        style="@style/textStyle" />
+                </LinearLayout>
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        </ScrollView>
+
+
+
+</RelativeLayout>

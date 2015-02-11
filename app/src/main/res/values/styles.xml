@@ -1,0 +1,12 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="Theme.MyIllini" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowActionBar">false</item>
+    </style>
+
+    <style name="textStyle">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+</resources>
