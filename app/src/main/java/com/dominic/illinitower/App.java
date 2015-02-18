@@ -15,6 +15,6 @@ public class App extends Application {
 
         Parse.enableLocalDatastore(this);
         Parse.initialize(this, "f42OCeAicD2YSb374hgdZH8yyV5HZciiw0wtQhGt", "pBJczdgkxpBihlG2GJpPye1hA7DuyEtTqZaVqJBZ");
-        PushService.setDefaultPushCallback(this, HomeActivity.class);
+        //PushService.setDefaultPushCallback(this, HomeActivity.class);
     }
 }
