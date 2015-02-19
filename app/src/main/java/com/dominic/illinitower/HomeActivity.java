@@ -10,6 +10,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.google.analytics.tracking.android.EasyTracker;
+import com.google.analytics.tracking.android.MapBuilder;
 import com.parse.Parse;
 import com.parse.ParseAnalytics;
 import com.parse.PushService;
@@ -30,6 +33,18 @@ public class HomeActivity extends BaseActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
 
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EasyTracker.getInstance(this).activityStart(this);  // Add this method.
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EasyTracker.getInstance(this).activityStop(this);  // Add this method.
     }
 
     public void onMyIlliniTowerClicked(View view){
@@ -80,6 +95,14 @@ public class HomeActivity extends BaseActivity {
     }
 
     public void onSuggestionClicked(View view) {
+
+        EasyTracker easyTracker = EasyTracker.getInstance(this);
+
+        // MapBuilder.createEvent().build() returns a Map of event fields and values
+        // that are set and sent with the hit.
+        easyTracker.send(MapBuilder.createEvent("Suggestions", "SuggestionSent", "Suggestions", null).build());
+
+
         final View dialogView = getLayoutInflater().inflate(R.layout.dialog_suggestions, null);
         AlertDialog dialog = new AlertDialog.Builder(HomeActivity.this)
                 .setView(dialogView)

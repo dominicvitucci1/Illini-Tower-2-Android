@@ -13,6 +13,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+
+import com.google.analytics.tracking.android.EasyTracker;
+import com.google.analytics.tracking.android.MapBuilder;
 import com.parse.Parse;
 import com.parse.ParseConfig;
 import com.parse.ConfigCallback;
@@ -33,6 +36,18 @@ public class DiningActivity extends BaseActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
 
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EasyTracker.getInstance(this).activityStart(this);  // Add this method.
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EasyTracker.getInstance(this).activityStop(this);  // Add this method.
     }
 
     public void onSkilletChoiceClicked(View view) {
@@ -62,6 +77,11 @@ public class DiningActivity extends BaseActivity {
     }
 
     public void onLatePlateClicked(View view) {
+
+        EasyTracker easyTracker = EasyTracker.getInstance(this);
+
+        easyTracker.send(MapBuilder.createEvent("LatePlateRequest", "LatePlateRequested", "LatePlateRequest", null).build());
+
         final View dialogView = getLayoutInflater().inflate(R.layout.dialog_late_plate, null);
         AlertDialog dialog = new AlertDialog.Builder(DiningActivity.this)
                 .setView(dialogView)
@@ -70,7 +90,7 @@ public class DiningActivity extends BaseActivity {
                     public void onClick(DialogInterface dialogI, int which) {
                         String name = ((EditText) dialogView.findViewById(R.id.et_late_name)).getText().toString();
                         String meal = ((EditText) dialogView.findViewById(R.id.et_late_meal)).getText().toString();
-                        String email =  ((EditText) dialogView.findViewById(R.id.et_late_email)).getText().toString();
+                        String email = ((EditText) dialogView.findViewById(R.id.et_late_email)).getText().toString();
                         String phoneNo = ((EditText) dialogView.findViewById(R.id.et_late_phone_no)).getText().toString();
                         String roomNo = ((EditText) dialogView.findViewById(R.id.et_late_room_no)).getText().toString();
                         String food = ((EditText) dialogView.findViewById(R.id.et_late_food)).getText().toString();
@@ -113,6 +133,10 @@ public class DiningActivity extends BaseActivity {
 
             }
         });
+
+        EasyTracker easyTracker = EasyTracker.getInstance(this);
+
+        easyTracker.send(MapBuilder.createEvent("Menu", "MenuBeingViewed", "Menu", null).build());
 
 //        Intent openWebPage = new Intent(DiningActivity.this, WebActivity.class);
 //        String destinationUrl = "google,com";

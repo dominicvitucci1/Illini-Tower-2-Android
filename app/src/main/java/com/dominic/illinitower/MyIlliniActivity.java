@@ -13,6 +13,8 @@ import android.webkit.WebView;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
+import com.google.analytics.tracking.android.EasyTracker;
+import com.google.analytics.tracking.android.MapBuilder;
 import com.parse.ConfigCallback;
 import com.parse.ParseConfig;
 import com.parse.ParseException;
@@ -33,6 +35,18 @@ public class MyIlliniActivity extends BaseActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EasyTracker.getInstance(this).activityStart(this);  // Add this method.
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EasyTracker.getInstance(this).activityStop(this);  // Add this method.
     }
 
     public void onReferFriendClicked(View view) {
@@ -84,6 +98,9 @@ public class MyIlliniActivity extends BaseActivity {
                 //openWebPage.putExtra(WebActivity.MAIL_TO_LINKS, true);
 //                destinationUrl = "file:////android_asset/contact_your_ra.html";
 //                title = "Contact RA";
+                EasyTracker easyTracker = EasyTracker.getInstance(this);
+
+                easyTracker.send(MapBuilder.createEvent("ContactYourRA", "ContactPageOpened", "ContactYourRA", null).build());
 
                 ParseConfig.getInBackground(new ConfigCallback() {
                     @Override
@@ -106,6 +123,11 @@ public class MyIlliniActivity extends BaseActivity {
 
                 break;
             case R.id.my_work_ord:
+
+                EasyTracker easyTracker2 = EasyTracker.getInstance(this);
+
+                easyTracker2.send(MapBuilder.createEvent("SubmitWorkOrder", "WorkOrderPageOpened", "WorkOrder", null).build());
+
                 destinationUrl =  "https://portal.campushousing.com/ILLINOIS-Illini-Tower/Default.aspx?Params=L9ezxPcQnQuRGKTzF%2b4sxeNblvAA%2b26c";
                 title = "Submit Work Order";
                 break;
